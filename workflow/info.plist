@@ -69,7 +69,7 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>126</integer>
 				<key>keyword</key>
 				<string>lifx</string>
 				<key>runningsubtext</key>
@@ -96,9 +96,9 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>110</integer>
 				<key>script</key>
-				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./lifx_run.rb "{query}"</string>
+				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./lifx_run.rb "{query}" </string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -167,7 +167,7 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>126</integer>
+				<integer>110</integer>
 				<key>script</key>
 				<string>LANG=en_US.UTF-8 /usr/bin/ruby ./lifxc_run.rb "{query}"</string>
 				<key>type</key>
