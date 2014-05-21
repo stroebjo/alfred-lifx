@@ -6,5 +6,5 @@ At the moment it is possible to turn on/off and change the color of a bulb.
 
 ![lifx workflow](screenshots/lifx.png)
 
-Download the Workflow [here](https://github.com/stroebjo/alfred-lifx/releases/download/1.0/LIFX.alfredworkflow).
+Download the Workflow [here](https://github.com/stroebjo/alfred-lifx/releases/download/1.0.1/LIFX.alfredworkflow).
 
