@@ -38,6 +38,7 @@ Alfred.with_friendly_error do |alfred|
 
     begin
       client.discover!
+      sleep 1
     rescue LIFX::Client::DiscoveryTimeout => e
       $stderr.puts("Could not find any LIFX bulbs.")
 

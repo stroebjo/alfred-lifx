@@ -12,7 +12,7 @@ require "lifx"
 Alfred.with_friendly_error do |alfred|
 
   client = LIFX::Client.lan
-  client.discover! { |c| c.lights.count >= 1 }
+  #client.discover! { |c| c.lights.count >= 1 }
 
 
   arguments  = ARGV[0].split # if a split pattern is omitted, whitespaces are the default
@@ -23,11 +23,36 @@ Alfred.with_friendly_error do |alfred|
 
   case bulb
   when "all"
+
+    begin
+      client.discover!
+      sleep 1
+    rescue LIFX::Client::DiscoveryTimeout => e
+      $stderr.puts("Could not find any LIFX bulbs.")
+
+      # no bulbs found
+      fb.add_item({
+        :uid      => "no-lifx",
+        :title    => "Could not find any LIFX bulbs.",
+        :subtitle => e,
+        :valid    => "no",
+      })
+
+      puts fb.to_xml(ARGV)
+
+      exit 1
+    end
+
     client.lights.each do |c|
       color = LIFX::Color.random_color
       c.set_color(color)
     end
   else
+
+    client.discover! do |c|                    # Discover lights. Blocks until a light with the label 'Office' is found
+      c.lights.with_label(bulb)
+    end
+
     if c = client.lights.with_label(bulb)
 
       if c.off?

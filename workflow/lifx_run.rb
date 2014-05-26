@@ -12,7 +12,28 @@ require "lifx"
 Alfred.with_friendly_error do |alfred|
 
   client = LIFX::Client.lan
-  client.discover! { |c| c.lights.count >= 1 }
+  #client.discover! { |c| c.lights.count >= 1 }
+
+  begin
+    client.discover!
+
+    sleep 1
+
+  rescue LIFX::Client::DiscoveryTimeout => e
+    $stderr.puts("Could not find any LIFX bulbs.")
+
+    # no bulbs found
+    fb.add_item({
+      :uid      => "no-lifx",
+      :title    => "Could not find any LIFX bulbs.",
+      :subtitle => e,
+      :valid    => "no",
+    })
+
+    puts fb.to_xml(ARGV)
+
+    exit 1
+  end
 
 
   case ARGV[0]
