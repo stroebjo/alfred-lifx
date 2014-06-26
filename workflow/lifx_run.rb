@@ -38,14 +38,10 @@ Alfred.with_friendly_error do |alfred|
 
   case ARGV[0]
   when "off"
-    client.lights.each do |c|
-      c.turn_off!
-    end
+    client.lights.turn_off
 
   when "on"
-    client.lights.each do |c|
-      c.turn_on!
-    end
+    client.lights.turn_on
 
   else
     # we got the label of a bulb, we want to toggle
